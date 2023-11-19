@@ -1,3 +1,7 @@
+<!-- <h1 class="text-3xl mb-5">Control Flow</h1> -->
+
+<app-title title="Control Flow" withShadow />
+
 <section class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
   <!-- ngIf @if -->
@@ -19,31 +23,56 @@
   </div>
 
 
-   <!-- ngSwitch @switch -->
-   <div class="bg-white rounded shadow p-10">
+  <!-- ngSwitch @switch -->
+  <div class="bg-white rounded shadow p-10">
 
     <h2 class="text-3xl">{{ grade() }}</h2>
 
     @switch ( grade() ) {
-    @case ('A') {
+      @case ('A') {
       <p>Arriba de 90</p>
-    }
-    @case ('A') {
+      }
+      @case ('A') {
       <p>Arriba de 80</p>
-    }
-    @default {
+      }
+      @default {
       <p>Reprobado</p>
-    }
+      }
     }
 
+  </div>
 
+  <!-- ngFor @for -->
+  <div class="bg-white rounded shadow p-10">
+
+    <ul>
+      @for (framework of frameworks(); track framework; let i = $index,
+        first = $first, last = $last, even = $even, odd = $odd, count = $count ) {
+        <li [class]="{
+          'bg-red-100': even && !first && !last,
+          'bg-yellow-100': odd && !first && !last,
+          'bg-blue-100': first || last,
+        }">
+          {{ i + 1 }}/{{ count }} - {{ framework }}
+        </li>
+      }
+    </ul>
 
 
 
   </div>
 
+  <div class="bg-white rounded shadow p-10">
+
+    <ul>
+      @for (framework of frameworks2(); track $index) {
+        <li>{{ framework }}</li>
+      } @empty {
+        <li> No hay frameworks en la lista</li>
+      }
+    </ul>
+
+  </div>
+
 
 </section>
-
-
-
